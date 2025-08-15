@@ -1,13 +1,14 @@
 import asyncio
 import datetime
 import time
+import tokens
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import CommandStart
 from dota_wr import get_info
 
 
-bot = Bot(token="8156406562:AAHO2MCc5i9ZFhvdlJGwcGsqFMhHLvkNR6s")    #KEEP YOUR DAMN HANDS OFF MY TOKEN!
+bot = Bot(token=tokens.bot_token)
 dp = Dispatcher()
 
 
