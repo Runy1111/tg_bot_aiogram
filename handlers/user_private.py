@@ -1,11 +1,13 @@
 from aiogram import Router, types, F
 import aiohttp
-from aiogram.filters import CommandStart, Command
+from aiogram.filters import CommandStart, Command, or_f
 from dota_wr import get_info
 import time
+from filters.chat_types import ChatTypeFilter
 from dotenv import find_dotenv, load_dotenv
 load_dotenv(find_dotenv())
 user_private_router = Router()
+user_private_router.message.filter(ChatTypeFilter(['private']))
 
 
 @user_private_router.message(CommandStart())
@@ -42,7 +44,8 @@ async def menu_cmd(message: types.Message):
 #                         await message.answer('try one more time')
 
 
-@user_private_router.message(F.text, F.text.lower() == 'hello')
+@user_private_router.message(or_f(Command("lol"), (F.text.lower() == "ктлхувтанг")))    # или команда, или текст
+@user_private_router.message(F.text, F.text.lower() == 'hello')  # '|' - или    '&' - и, оба в скобки
 async def menu_cmd(message: types.Message):
     await message.answer("МАГИЯ:")
 
