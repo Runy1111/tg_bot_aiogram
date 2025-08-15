@@ -26,11 +26,14 @@ async def echo(message: types.Message, bot: Bot):
         except AttributeError:
             await message.answer('try one more time')
     else:
+        # await bot.send_message(message.from_user.id, 'Ответ')
         await message.answer(message.text)
+        # await message.reply(message.text)
 
 
 async def main():
     print(datetime.datetime.now(), "Bot started!")
+    await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
 
 
