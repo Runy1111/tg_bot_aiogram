@@ -4,7 +4,6 @@ from filters.chat_types import ChatTypeFilter
 
 
 user_group_router = Router()
-user_group_router.message.filter()
 user_group_router.message.filter(ChatTypeFilter(['group', 'supergroup']))
 
 restricted_words = {'jopa', 'jid'}

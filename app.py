@@ -3,7 +3,8 @@ import os
 import datetime
 
 from aiogram import Bot, Dispatcher, types
-from aiogram.filters import CommandStart
+from aiogram.enums import ParseMode
+from aiogram.client.default import DefaultBotProperties
 
 from dotenv import find_dotenv, load_dotenv
 load_dotenv(find_dotenv())
@@ -14,7 +15,7 @@ from common.bot_comand_list import private
 
 ALLOWED_UPDATES = ["message", "edited_message"]
 
-bot = Bot(token=os.getenv('BOT_TOKEN'))
+bot = Bot(token=os.getenv('BOT_TOKEN'), default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher()
 
 dp.include_router(user_private_router)
